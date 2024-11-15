@@ -107,3 +107,20 @@ Bunun için ise load balancer'lar üzerinde ilgili key'e karşılık altta bulun
 
 ![image](https://github.com/user-attachments/assets/ec8f1337-3aa0-4067-b6c0-1b7138de0b83)
 
+## Health Check
+
+<img align="right" width="300" src="https://github.com/user-attachments/assets/23aaa1cb-e71f-4632-bdee-d96785d28ffc">
+
+NGINX, load balancing yapılacağı sunuculan sürekli olarak test edebilir ve gelen isteği başarısız yahut sıkıntılı sunuculara yönlendirmeden boşa gitmeyecek şekilde işleyebilmektedir.
+
+Görseli incelersek, `fail_timeout` parametresi ile sunucunun kullanılamaz olarak işaretlenmesi için ne kadar sürelik başarısız girişimin gerçekleşmesi gerektiğini ve aynı zamanda sunucunun uygun değil olarak işaretlendiği süreyi ayarlamaktayız. Bu yapılana Pasif Sağlık Kontrolü denmektedir. Bu ifade gelen isteğin yönlendirilmesi neticesinde sunucudan alınan tepkiye göre kontrollerin yapılmasını ifade etmektedir.
+
+Bu süre varsayılan olarak 10 saniyedir. Görselde 30 saniye olarak yapılandırılmıştır. `max_fails` parametresi ise sunucunun kullanılamıyor olarak işaretlenmesi için gereken süre boyunca gerçekleşmesi gereken başarısız denemelerin sayısını ayarlamamızı sağlamaktadır. Yani bu örnekte, 30 saniye içerisinde 3 kez yanıt alınamazsa ilgili sunucu 30 saniye boyunca kullanılamaz olarak işaretlenecektir. 
+
+<img align="left" width="200" src="https://github.com/user-attachments/assets/3e1defe6-1576-467c-9e3f-9844616be1bc">
+
+Ayrıca NGINX'de her sunucuya özel bir denetim isteği göndererek, önceden bir denetleme yapan ve sunucu durumlarını düzenli kontrol eden Aktif Sağlık Kontrolü de mevcuttur. Bunun için `health_check` etiketinin yandaki gibi kullanılması yeterlidir.
+
+
+
+
