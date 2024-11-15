@@ -90,8 +90,16 @@ Görüldüğü üzere, Load Balancer başarılı bir şekilde çalışmaktadır.
   </tr>
 </table>
 
-## İstek Yapan Client'ın IP Değerine Erişmek
+## Bağlantı Sayısını Sınırlama
 
+<img align="right" width="300" src="https://github.com/user-attachments/assets/3c2aa527-8ceb-4250-b720-5350375663a3">
+
+Gelen isteklerin yönlendirileceği sunucuların bağlantı sayıları sınırlanabilmektedir. Bu işlem için`max_conns`etiketi kullanılmaktadır.
+
+`max_conns` değeri dolduğu taktirde istekler `queue` değeri kadar kuyruğa alınır. queue, kuyruk isteklerle dolduğu taktirde veya istek neticesinde sunucu seçimi `timeout` değeri kadar zaman aşımına uğradığında client'a bir hata gönderilir.
+
+
+## İstek Yapan Client'ın IP Değerine Erişmek
 
 Load balancing süreçlerinde türlü ihtiyaçlar doğrultusunda sunucular üzerinde istek yapan client'ların IP değerlerine erişmemiz gerekebilmektedir. Uygulama sunucularının client'ların IP değerlerini öğrenmesi gerektiğinde HTTP Header'da `X-Forwarded-For` key inin doldurulması gerekmektedir.
 
